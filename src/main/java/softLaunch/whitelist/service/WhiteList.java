@@ -1,4 +1,4 @@
-package softLanch.client.service;
+package softLanch.whitelist.service;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "Clientes_Autorizados")
-public class Client implements Serializable {
+public class WhiteList implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,17 +17,18 @@ public class Client implements Serializable {
     @Column(name = "CPF",unique = true)
     private String cpf;
 
-    public Client(){
+    public WhiteList(){
 
     }
 
-    public Client(Long id, String cpf) {
-         this.id = id;
+    public WhiteList(String name, String cpf) {
+         this.name = name;
          this.cpf = cpf;
     }
     public Long getId() {
         return id;
     }
+
 
     public void setId(Long id) {
         this.id = id;
