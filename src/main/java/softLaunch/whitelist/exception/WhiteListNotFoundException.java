@@ -1,4 +1,4 @@
-package softLanch.whitelist.exception;
+package softLaunch.whitelist.exception;
 
 public class WhiteListNotFoundException extends RuntimeException {
 

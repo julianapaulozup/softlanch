@@ -1,9 +1,9 @@
-package softLanch.whitelist.service;
+package softLaunch.whitelist.service;
 
 import org.springframework.http.HttpStatus;
-import softLanch.client.Client;
-import softLanch.whitelist.exception.WhiteListNotFoundException;
-import softLanch.whitelist.repository.WhiteListRepository;
+import softLaunch.client.Client;
+import softLaunch.whitelist.exception.WhiteListNotFoundException;
+import softLaunch.whitelist.repository.WhiteListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package softLanch.attempt;
+package softLaunch.attempt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

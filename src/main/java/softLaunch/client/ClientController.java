@@ -1,14 +1,14 @@
-package softLanch.client;
+package softLaunch.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import softLanch.attempt.Attempt;
-import softLanch.attempt.AttemptService;
-import softLanch.whitelist.service.RequestWrapper;
-import softLanch.whitelist.service.WhiteList;
-import softLanch.whitelist.service.WhiteListService;
+import softLaunch.attempt.Attempt;
+import softLaunch.attempt.AttemptService;
+import softLaunch.whitelist.service.RequestWrapper;
+import softLaunch.whitelist.service.WhiteList;
+import softLaunch.whitelist.service.WhiteListService;
 
 import java.util.List;
 

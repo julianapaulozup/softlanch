@@ -1,4 +1,4 @@
-package softLanch.client;
+package softLaunch.client;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;

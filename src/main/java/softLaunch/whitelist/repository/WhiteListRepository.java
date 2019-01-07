@@ -1,6 +1,6 @@
-package softLanch.whitelist.repository;
+package softLaunch.whitelist.repository;
 
-import softLanch.whitelist.service.WhiteList;
+import softLaunch.whitelist.service.WhiteList;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
