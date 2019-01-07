@@ -8,10 +8,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @EnableJpaAuditing
-public class SoftLanchMain {
+public class SoftLaunchMain {
 
     public static void main(String[] args){
-        SpringApplication.run(SoftLanchMain.class,args);
+        SpringApplication.run(SoftLaunchMain.class,args);
 
     }
 
