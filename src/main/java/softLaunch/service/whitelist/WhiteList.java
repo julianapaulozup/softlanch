@@ -1,4 +1,4 @@
-package softLaunch.whitelist.service;
+package softLaunch.service.whitelist;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -24,6 +24,12 @@ public class WhiteList implements Serializable {
     public WhiteList(String name, String cpf) {
          this.name = name;
          this.cpf = cpf;
+    }
+
+    public WhiteList(Long id,String name, String cpf) {
+        this.id =id;
+        this.name = name;
+        this.cpf = cpf;
     }
     public Long getId() {
         return id;

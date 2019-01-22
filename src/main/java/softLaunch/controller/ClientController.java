@@ -1,19 +1,20 @@
-package softLaunch.client;
+package softLaunch.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import softLaunch.attempt.Attempt;
-import softLaunch.attempt.AttemptService;
-import softLaunch.whitelist.service.RequestWrapper;
-import softLaunch.whitelist.service.WhiteList;
-import softLaunch.whitelist.service.WhiteListService;
+import softLaunch.service.attempt.Attempt;
+import softLaunch.service.attempt.AttemptService;
+import softLaunch.service.client.Client;
+import softLaunch.service.client.ClientService;
+import softLaunch.service.whitelist.RequestWrapper;
+import softLaunch.service.whitelist.WhiteListService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("client")
+@RequestMapping("/client")
 public class ClientController {
 
     @Autowired
@@ -32,7 +33,6 @@ public class ClientController {
     }
 
     @PostMapping("/batch")
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<RequestWrapper> postWithMultipleObjects(
             @RequestBody RequestWrapper requestWrapper) {
 
@@ -44,6 +44,6 @@ public class ClientController {
                         attemptService.addAttempt(new Attempt(c.getName(),c.getCpf()));
                 });
 
-        return new ResponseEntity<RequestWrapper>(requestWrapper, HttpStatus.OK);
+        return new ResponseEntity<RequestWrapper>(requestWrapper, HttpStatus.CREATED);
     }
 }

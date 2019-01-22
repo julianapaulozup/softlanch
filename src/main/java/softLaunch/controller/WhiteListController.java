@@ -1,13 +1,9 @@
-package softLaunch.whitelist.controller;
+package softLaunch.controller;
 
 import org.springframework.http.ResponseEntity;
-import softLaunch.attempt.Attempt;
-import softLaunch.attempt.AttemptService;
-import softLaunch.client.Client;
-import softLaunch.client.ClientService;
-import softLaunch.whitelist.service.WhiteList;
-import softLaunch.whitelist.service.WhiteListService;
-import softLaunch.whitelist.service.RequestWrapper;
+import softLaunch.service.whitelist.WhiteList;
+import softLaunch.service.whitelist.WhiteListService;
+import softLaunch.service.whitelist.RequestWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -27,13 +23,12 @@ public class WhiteListController {
     }
 
     @PostMapping("/batch")
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<RequestWrapper> postWithMultipleObjects(
             @RequestBody RequestWrapper requestWrapper) {
         requestWrapper.getWhiteLists().stream()
                 .forEach(c-> whiteListService.addWhiteList(new WhiteList(c.getName(),c.getCpf())));
 
-        return new ResponseEntity<RequestWrapper>(requestWrapper, HttpStatus.OK);
+        return new ResponseEntity<RequestWrapper>(requestWrapper, HttpStatus.CREATED);
     }
 
     @DeleteMapping

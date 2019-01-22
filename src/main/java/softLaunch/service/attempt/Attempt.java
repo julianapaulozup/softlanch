@@ -1,12 +1,11 @@
-package softLaunch.client;
+package softLaunch.service.attempt;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
 
 @Entity
-@Table(name = "Clientes_Cadastrados")
-public class Client implements Serializable {
+@Table(name = "Tentativas_de_Cadastro")
+public class Attempt {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,29 +13,22 @@ public class Client implements Serializable {
     @NotEmpty
     @Column(name = "Nome")
     private String name;
+    @NotEmpty
     @Column(name = "CPF", unique = true)
     private String cpf;
 
-    public Client() {
+    public Attempt() {
     }
 
-    public Client(String name, String cpf) {
+    public Attempt(String name, String cpf){
         this.name = name;
         this.cpf = cpf;
     }
 
-    public Client(Long id,String name, String cpf){
+    public Attempt(Long id,String name, String cpf){
         this.id = id;
         this.name = name;
         this.cpf = cpf;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Long getId() {
@@ -47,11 +39,20 @@ public class Client implements Serializable {
         this.id = id;
     }
 
+
     public String getCpf() {
         return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

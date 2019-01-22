@@ -1,7 +1,8 @@
-package softLaunch.attempt;
+package softLaunch.service.attempt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import softLaunch.repository.AttemptRepository;
 
 @Service
 public class AttemptService {
@@ -11,7 +12,6 @@ public class AttemptService {
 
     public Attempt addAttempt(Attempt attempt) {
         return repository.save(attempt);
-
     }
 
 }
