@@ -1,4 +1,6 @@
-package softLaunch.service.whitelist;
+package softLaunch.domain;
+
+import softLaunch.domain.WhiteList;
 
 import java.util.List;
 

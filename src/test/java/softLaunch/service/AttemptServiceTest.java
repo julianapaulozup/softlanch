@@ -7,8 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import softLaunch.repository.AttemptRepository;
-import softLaunch.service.attempt.Attempt;
-import softLaunch.service.attempt.AttemptService;
+import softLaunch.domain.Attempt;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;

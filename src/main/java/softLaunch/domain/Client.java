@@ -1,10 +1,11 @@
-package softLaunch.service.client;
+package softLaunch.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "Clientes_Cadastrados")
 public class Client implements Serializable {
 
     @Id

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import softLaunch.service.whitelist.WhiteList;
+import softLaunch.domain.WhiteList;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,11 +49,11 @@ public class WhiteListRepositoryTest {
             WhiteList whiteList = new WhiteList("WhiteList", "11111");
             repository.save(whiteList);
             List<WhiteList> whiteLists = repository.findAll();
-            assertEquals(7, whiteLists.size());
+            assertEquals(5, whiteLists.size());
             int size = whiteLists.size() - 1 ;
-            Assertions.assertThat(whiteLists.get(size).getId()).isNotNull();
-            Assertions.assertThat(whiteLists.get(size).getCpf()).isEqualTo("11111");
-            Assertions.assertThat(whiteLists.get(size).getName()).isEqualTo("WhiteList");
+            Assertions.assertThat(whiteLists.get(0).getId()).isNotNull();
+            Assertions.assertThat(whiteLists.get(0).getCpf()).isEqualTo("11111");
+            Assertions.assertThat(whiteLists.get(0).getName()).isEqualTo("WhiteList");
 
         }
 
@@ -63,9 +63,9 @@ public class WhiteListRepositoryTest {
             WhiteList whiteList = new WhiteList("WhiteList", "111111");
             repository.save(whiteList);
             List <WhiteList> foundWhiteLists = repository.findAll();
-            repository.delete(foundWhiteLists.get(6));
+            repository.delete(foundWhiteLists.get(4));
             List <WhiteList> whiteLists = repository.findAll();
-            assertEquals(6, whiteLists.size());
+            assertEquals(4, whiteLists.size());
 
         }
 
@@ -79,8 +79,8 @@ public class WhiteListRepositoryTest {
             repository.save(whiteList);
             List <WhiteList> whiteLists = repository.findAll();
             int size = whiteLists.size() - 1;
-            assertEquals(7, whiteLists.size());
-            assertEquals("WhiteList Atualizada", whiteLists.get(size).getName());
+            assertEquals(5, whiteLists.size());
+            assertEquals("WhiteList Atualizada", whiteLists.get(0).getName());
         }
 
         @Test

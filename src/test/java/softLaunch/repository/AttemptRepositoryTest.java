@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import softLaunch.service.attempt.Attempt;
+import softLaunch.domain.Attempt;
 
 import java.util.List;
 import java.util.Optional;
@@ -80,7 +80,7 @@ public class AttemptRepositoryTest {
         List <Attempt> attempts = repository.findAll();
         int size = attempts.size() - 1;
         assertEquals(7, attempts.size());
-        assertEquals("Tentativa Atualizada", attempts.get(size).getName());
+        assertEquals("Tentativa Atualizada", attempts.get(6).getName());
     }
 
     @Test

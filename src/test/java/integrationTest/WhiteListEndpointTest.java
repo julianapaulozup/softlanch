@@ -15,8 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import softLaunch.SoftLaunchMain;
 import softLaunch.repository.WhiteListRepository;
-import softLaunch.service.whitelist.RequestWrapper;
-import softLaunch.service.whitelist.WhiteList;
+import softLaunch.domain.RequestWrapper;
+import softLaunch.domain.WhiteList;
 
 import java.util.ArrayList;
 import java.util.List;

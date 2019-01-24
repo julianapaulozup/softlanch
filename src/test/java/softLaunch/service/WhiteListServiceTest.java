@@ -9,8 +9,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import softLaunch.repository.WhiteListRepository;
-import softLaunch.service.whitelist.WhiteList;
-import softLaunch.service.whitelist.WhiteListService;
+import softLaunch.domain.WhiteList;
 
 import java.util.List;
 

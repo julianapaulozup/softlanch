@@ -13,8 +13,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import softLaunch.service.whitelist.WhiteList;
-import softLaunch.service.whitelist.WhiteListService;
+import softLaunch.domain.WhiteList;
+import softLaunch.service.WhiteListService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,7 +59,6 @@ public class WhiteListControllerTest {
 
         @Test
         public void whenpostWhiteList_thenReturnCreated() throws Exception {
-
 
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("name", "Whitelist");

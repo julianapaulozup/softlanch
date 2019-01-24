@@ -7,8 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import softLaunch.repository.ClientRepository;
-import softLaunch.service.client.Client;
-import softLaunch.service.client.ClientService;
+import softLaunch.domain.Client;
 
 import java.util.List;
 

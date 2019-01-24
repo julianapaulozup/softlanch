@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import softLaunch.service.client.Client;
+import softLaunch.domain.Client;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,7 +50,7 @@ public class ClientRepositoryTest {
         Client client = new Client("Cliente", "11111");
         repository.save(client);
         List<Client> clients = repository.findAll();
-        assertEquals(7, clients.size());
+        assertEquals(6, clients.size());
         int size = clients.size() - 1;
         Assertions.assertThat(clients.get(size).getId()).isNotNull();
         Assertions.assertThat(clients.get(size).getCpf()).isEqualTo("11111");
@@ -64,9 +64,9 @@ public class ClientRepositoryTest {
         Client client = new Client("Cliente", "1111");
         repository.save(client);
         List<Client> foundClients = repository.findAll();
-        repository.delete(foundClients.get(6));
+        repository.delete(foundClients.get(5));
         List<Client> clients = repository.findAll();
-        assertEquals(6, clients.size());
+        assertEquals(5, clients.size());
 
     }
 
@@ -80,7 +80,7 @@ public class ClientRepositoryTest {
         repository.save(client);
         List<Client> clients = repository.findAll();
         int size = clients.size() - 1;
-        assertEquals(7, clients.size());
+        assertEquals(6, clients.size());
         assertEquals("Cliente Atualizada", clients.get(size).getName());
     }
 

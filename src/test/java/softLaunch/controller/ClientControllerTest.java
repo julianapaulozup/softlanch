@@ -13,10 +13,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import softLaunch.service.attempt.AttemptService;
-import softLaunch.service.client.Client;
-import softLaunch.service.client.ClientService;
-import softLaunch.service.whitelist.WhiteListService;
+import softLaunch.service.AttemptService;
+import softLaunch.domain.Client;
+import softLaunch.service.ClientService;
+import softLaunch.service.WhiteListService;
 
 import java.util.Arrays;
 import java.util.List;

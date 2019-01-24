@@ -1,4 +1,4 @@
-package softLaunch.service.whitelist;
+package softLaunch.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
