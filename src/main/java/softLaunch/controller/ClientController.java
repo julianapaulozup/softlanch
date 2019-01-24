@@ -1,14 +1,14 @@
 package softLaunch.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import softLaunch.domain.Client;
 import softLaunch.service.ClientService;
 import softLaunch.domain.RequestWrapper;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/client")
@@ -19,8 +19,8 @@ public class ClientController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Client> getAllClients() {
-        return clientService.getAllClients();
+    public Page<Client> getAllClients(Pageable pegeable) {
+        return clientService.getAllClients(pegeable);
     }
 
     @PostMapping("/batch")

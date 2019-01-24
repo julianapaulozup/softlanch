@@ -1,6 +1,8 @@
 package softLaunch.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -9,10 +11,6 @@ import softLaunch.exceptionHandler.ClientNotFoundException;
 import softLaunch.repository.ClientRepository;
 import softLaunch.domain.Attempt;
 import softLaunch.domain.RequestWrapper;
-
-import java.util.List;
-
-import static org.springframework.http.HttpStatus.CREATED;
 
 
 @Service
@@ -29,8 +27,8 @@ public class ClientService {
 
     public Client addClient(Client client) { return repository.save(client); }
 
-    public List<Client> getAllClients() {
-        return repository.findAll();
+    public Page<Client> getAllClients(Pageable peageble) {
+        return repository.findAll(peageble);
     }
 
     public ResponseEntity<RequestWrapper> addBatch(RequestWrapper requestWrapper) {

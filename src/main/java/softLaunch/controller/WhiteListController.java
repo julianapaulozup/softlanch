@@ -1,5 +1,7 @@
 package softLaunch.controller;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import softLaunch.domain.WhiteList;
 import softLaunch.service.WhiteListService;
@@ -7,7 +9,6 @@ import softLaunch.domain.RequestWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RestController
 @RequestMapping("whitelist")
@@ -18,8 +19,8 @@ public class WhiteListController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<WhiteList> getAllWhiteLists() {
-        return whiteListService.getAllWhiteLists();
+    public Page<WhiteList> getAllWhiteLists(Pageable pageable) {
+        return whiteListService.getAllWhiteLists(pageable);
     }
 
     @PostMapping("/batch")

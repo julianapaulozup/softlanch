@@ -1,5 +1,7 @@
 package softLaunch.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import softLaunch.domain.RequestWrapper;
 import softLaunch.domain.WhiteList;
@@ -9,16 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-
 @Service
 public class WhiteListService {
 
     @Autowired
     private WhiteListRepository repository;
 
-    public List<WhiteList> getAllWhiteLists() {
-        return repository.findAll();
+    public Page<WhiteList> getAllWhiteLists(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     public ResponseEntity<?> deleteWhiteList() {
