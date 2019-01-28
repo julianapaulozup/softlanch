@@ -2,10 +2,11 @@ package softLaunch.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Tentativas_de_Cadastro")
-public class Attempt {
+public class Attempt implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

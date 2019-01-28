@@ -7,7 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import softLaunch.domain.Client;
-import softLaunch.exceptionHandler.ClientNotFoundException;
+import softLaunch.domain.Response;
+import softLaunch.exceptionHandler.ClientNotFoundInWhitelistException;
 import softLaunch.repository.ClientRepository;
 import softLaunch.domain.Attempt;
 import softLaunch.domain.RequestWrapper;
@@ -25,7 +26,10 @@ public class ClientService {
     @Autowired
     private AttemptService attemptService;
 
-    public Client addClient(Client client) { return repository.save(client); }
+    public Response addClient(Client client) {
+        repository.save(client);
+        return new Response(client.getName(),client.getCpf());
+    }
 
     public Page<Client> getAllClients(Pageable peageble) {
         return repository.findAll(peageble);
@@ -35,11 +39,11 @@ public class ClientService {
         requestWrapper.getWhiteLists().stream()
                 .forEach(c->{
                     try{
-                        whiteListService.exists(c);
+                        whiteListService.exists(c.getCpf());
                         this.addClient(new Client(c.getName(),c.getCpf()));
-                    }catch (ClientNotFoundException e){
+                    }catch (ClientNotFoundInWhitelistException e){
                         attemptService.addAttempt(new Attempt(c.getName(),c.getCpf()));
                 }});
-        return new ResponseEntity<RequestWrapper>(requestWrapper, HttpStatus.CREATED);
+        return new ResponseEntity<>(requestWrapper, HttpStatus.CREATED);
     }
 }

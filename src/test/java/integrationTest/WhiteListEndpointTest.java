@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import softLaunch.SoftLaunchMain;
+import softLaunch.domain.Response;
 import softLaunch.repository.WhiteListRepository;
 import softLaunch.domain.RequestWrapper;
 import softLaunch.domain.WhiteList;
@@ -49,8 +50,8 @@ public class WhiteListEndpointTest {
 
     @Test
     public void createWhiteListtShouldReturnStatusCode201() {
-        List<WhiteList> list = new ArrayList<>();
-        list.add(new WhiteList("name","cpf"));
+        List<Response> list = new ArrayList<>();
+        list.add(new Response("name","cpf"));
         RequestWrapper whiteList = new RequestWrapper(list);
         ResponseEntity<RequestWrapper> responseEntity =
                 restTemplate.postForEntity("/whitelist/batch", whiteList, RequestWrapper.class);

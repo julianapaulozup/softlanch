@@ -6,20 +6,20 @@ import java.util.List;
 
 public class RequestWrapper {
 
-    private List<WhiteList> whiteLists;
+    private List<Response> whiteLists;
 
-    public RequestWrapper(List<WhiteList> whiteLists) {
+    public RequestWrapper(List<Response> whiteLists) {
         this.whiteLists = whiteLists;
     }
 
     public RequestWrapper() {
     }
 
-    public List<WhiteList> getWhiteLists() {
+    public List<Response> getWhiteLists() {
         return whiteLists;
     }
 
-    public void setWhiteLists(List<WhiteList> whiteLists) {
+    public void setWhiteLists(List<Response> whiteLists) {
         this.whiteLists = whiteLists;
     }
 }

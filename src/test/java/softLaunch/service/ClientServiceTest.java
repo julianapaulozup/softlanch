@@ -6,12 +6,18 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import softLaunch.domain.Response;
 import softLaunch.repository.ClientRepository;
 import softLaunch.domain.Client;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -26,31 +32,37 @@ public class ClientServiceTest {
     @Test
     public void whenValidClient_thenClientShouldAddSucess(){
 
-        Client found = new Client(111L, "Cliente", "88");
-        when(repository.save(any())).thenReturn(found);
-        found = clientService.addClient(found);
+        Client test = new Client(111L, "Cliente", "88");
+        when(repository.save(any())).thenReturn(test);
+        Response found = clientService.addClient(test);
 
-
-        Assertions.assertThat(found.getId()).isNotNull();
+        Assertions.assertThat(found.getCpf()).isEqualTo("88");
         Assertions.assertThat(found.getName()).isEqualTo("Cliente");
     }
 
     @Test(expected = AssertionError.class)
     public void whenInvalidClient_thenClientShouldAddFail(){
 
-        Client found = new Client();
-        when(repository.save(any())).thenReturn(found);
-        found = clientService.addClient(found);
+        Client test = new Client();
+        when(repository.save(any())).thenReturn(test);
+        Response found = clientService.addClient(test);
 
-        Assertions.assertThat(found.getId()).isNotNull();
+        Assertions.assertThat(found.getCpf()).isEqualTo("88");
         Assertions.assertThat(found.getName()).isEqualTo("Cliente");
     }
 
     @Test
     public void whenSearch_thenGetReturnListSucess(){
 
-        List<Client> found = clientService.getAllClients();
-        Assertions.assertThat(found.size()).isNotNull();
+        PageRequest pageRequest = PageRequest.of(0,10);
+        Client client = new Client(11L,"Nome","111111");
+
+        List<Client> allClients = Arrays.asList(client);
+        final Page<Client> page = new PageImpl<>(allClients);
+        given(clientService.getAllClients(any(PageRequest.class))).willReturn(page);
+
+        Page<Client> found = clientService.getAllClients(pageRequest);
+        Assertions.assertThat(found.getTotalElements()).isEqualTo(1);
 
     }
 

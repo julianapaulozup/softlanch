@@ -48,12 +48,12 @@ public class WhiteListRepositoryTest {
 
             WhiteList whiteList = new WhiteList("WhiteList", "11111");
             repository.save(whiteList);
-            List<WhiteList> whiteLists = repository.findAll();
-            assertEquals(5, whiteLists.size());
-            int size = whiteLists.size() - 1 ;
-            Assertions.assertThat(whiteLists.get(0).getId()).isNotNull();
-            Assertions.assertThat(whiteLists.get(0).getCpf()).isEqualTo("11111");
-            Assertions.assertThat(whiteLists.get(0).getName()).isEqualTo("WhiteList");
+            Optional<WhiteList> whiteLists;
+            whiteLists = repository.findByCpf("11111");
+            Assertions.assertThat(whiteLists.get().getId()).isNotNull();
+            Assertions.assertThat(whiteLists.get().getCpf()).isEqualTo("11111");
+            Assertions.assertThat(whiteLists.get().getName()).isEqualTo("WhiteList");
+
 
         }
 
@@ -63,9 +63,9 @@ public class WhiteListRepositoryTest {
             WhiteList whiteList = new WhiteList("WhiteList", "111111");
             repository.save(whiteList);
             List <WhiteList> foundWhiteLists = repository.findAll();
-            repository.delete(foundWhiteLists.get(4));
+            repository.delete(foundWhiteLists.get(9));
             List <WhiteList> whiteLists = repository.findAll();
-            assertEquals(4, whiteLists.size());
+            assertEquals(11, whiteLists.size());
 
         }
 
@@ -77,10 +77,9 @@ public class WhiteListRepositoryTest {
             repository.save(whiteList);
             whiteList.setName("WhiteList Atualizada");
             repository.save(whiteList);
-            List <WhiteList> whiteLists = repository.findAll();
-            int size = whiteLists.size() - 1;
-            assertEquals(5, whiteLists.size());
-            assertEquals("WhiteList Atualizada", whiteLists.get(0).getName());
+            Optional<WhiteList> whiteLists;
+            whiteLists = repository.findByCpf("111111");
+            assertEquals("WhiteList Atualizada", whiteLists.get().getName());
         }
 
         @Test

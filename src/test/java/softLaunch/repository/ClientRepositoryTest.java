@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import softLaunch.domain.Client;
+import softLaunch.exceptionHandler.ClientNotFoundInWhitelistException;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,15 +48,19 @@ public class ClientRepositoryTest {
     @Test
     public void findClientAfterSave() {
 
-        Client client = new Client("Cliente", "11111");
+        Client client = new Client(1L,"Client", "1111112");
         repository.save(client);
-        List<Client> clients = repository.findAll();
-        assertEquals(6, clients.size());
-        int size = clients.size() - 1;
-        Assertions.assertThat(clients.get(size).getId()).isNotNull();
-        Assertions.assertThat(clients.get(size).getCpf()).isEqualTo("11111");
-        Assertions.assertThat(clients.get(size).getName()).isEqualTo("Cliente");
+        Optional<Client> clients;
+        clients = repository.findByCpf("1111112");
+        Assertions.assertThat(clients.get().getId()).isNotNull();
+        Assertions.assertThat(clients.get().getCpf()).isEqualTo("1111112");
+        Assertions.assertThat(clients.get().getName()).isEqualTo("Client");
 
+    }
+
+    @Test(expected = ClientNotFoundInWhitelistException.class)
+    public void findClientException() {
+        this.repository.findById(0L).orElseThrow(ClientNotFoundInWhitelistException::new);
     }
 
     @Test
@@ -66,22 +71,21 @@ public class ClientRepositoryTest {
         List<Client> foundClients = repository.findAll();
         repository.delete(foundClients.get(5));
         List<Client> clients = repository.findAll();
-        assertEquals(5, clients.size());
+        assertEquals(6, clients.size());
 
     }
 
     @Test
     public void updateClientAfterSave() {
 
-
         Client client = new Client("Cliente", "1111");
         repository.save(client);
         client.setName("Cliente Atualizada");
         repository.save(client);
-        List<Client> clients = repository.findAll();
-        int size = clients.size() - 1;
-        assertEquals(6, clients.size());
-        assertEquals("Cliente Atualizada", clients.get(size).getName());
+        Optional<Client> clients;
+        clients = repository.findByCpf("1111");
+        assertEquals("Cliente Atualizada", clients.get().getName());
+
     }
 
     @Test

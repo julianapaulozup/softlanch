@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class ResourseExceptionHandler {
 
-    @ExceptionHandler(ClientNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ClientNotFoundInWhitelistException.class)
+    @ResponseStatus(HttpStatus.CREATED)
     public ErrorDetails handleProductNotFoundException
-            (ClientNotFoundException e, HttpServletRequest request) {
+            (ClientNotFoundInWhitelistException e, HttpServletRequest request) {
 
         ErrorDetails error = new ErrorDetails();
         error.setStatus(404l);

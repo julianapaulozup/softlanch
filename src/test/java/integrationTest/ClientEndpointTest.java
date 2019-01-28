@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import softLaunch.SoftLaunchMain;
+import softLaunch.domain.Response;
 import softLaunch.repository.ClientRepository;
 import softLaunch.domain.Client;
 import softLaunch.domain.RequestWrapper;
@@ -51,8 +52,8 @@ public class ClientEndpointTest {
 
     @Test
     public void createClientShouldReturnStatusCode201() {
-        List<WhiteList> list = new ArrayList<>();
-        list.add(new WhiteList("name","cpf"));
+        List<Response> list = new ArrayList<>();
+        list.add(new Response("teste1","oi1"));
         RequestWrapper whiteList = new RequestWrapper(list);
         ResponseEntity<RequestWrapper> responseEntity =
                 restTemplate.postForEntity("/client/batch", whiteList, RequestWrapper.class);

@@ -6,14 +6,20 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import softLaunch.domain.Response;
 import softLaunch.repository.WhiteListRepository;
 import softLaunch.domain.WhiteList;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -37,12 +43,11 @@ public class WhiteListServiceTest {
         @Test
         public void whenValidWhiteList_thenWhiteListShouldAddSucess(){
 
-            WhiteList found = new WhiteList(11L, "White list", "88");
-            when(repository.save(any())).thenReturn(found);
+            WhiteList test = new WhiteList(11L, "White list", "88");
+            when(repository.save(any())).thenReturn(test);
+            Response found = whiteListService.addWhiteList(test);
 
-            found = whiteListService.addWhiteList(found);
-
-            Assertions.assertThat(found.getId()).isNotNull();
+            Assertions.assertThat(found.getCpf()).isEqualTo("88");
             Assertions.assertThat(found.getName()).isEqualTo("White list");
 
         }
@@ -50,21 +55,27 @@ public class WhiteListServiceTest {
         @Test(expected = AssertionError.class)
         public void whenInvalidWhiteList_thenWhiteListShouldAddFail(){
 
-            WhiteList found = new WhiteList();
-            when(repository.save(any())).thenReturn(found);
+            WhiteList test = new WhiteList();
+            when(repository.save(any())).thenReturn(test);
+            Response found = whiteListService.addWhiteList(test);
 
-            found = whiteListService.addWhiteList(found);
-
-            Assertions.assertThat(found.getId()).isNotNull();
+            Assertions.assertThat(found.getCpf()).isEqualTo("88");
             Assertions.assertThat(found.getName()).isEqualTo("White list");
 
         }
 
         @Test
         public void whenSearch_thenGetReturnListSucess(){
-            List<WhiteList> found = whiteListService.getAllWhiteLists();
+            PageRequest pageRequest = PageRequest.of(0,10);
+            WhiteList whiteList= new WhiteList(11L,"Nome","111111");
 
-            Assertions.assertThat(found.size()).isNotNull();
+            List<WhiteList> allClients = Arrays.asList(whiteList);
+            final Page<WhiteList> page = new PageImpl<>(allClients);
+            given(whiteListService.getAllWhiteLists(any(PageRequest.class))).willReturn(page);
+
+            Page<WhiteList> found = whiteListService.getAllWhiteLists(pageRequest);
+            Assertions.assertThat(found.getTotalElements()).isEqualTo(1);
+
         }
 
 }

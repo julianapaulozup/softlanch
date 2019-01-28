@@ -48,13 +48,11 @@ public class AttemptRepositoryTest {
 
         Attempt attempt = new Attempt("Tentativa", "11");
         repository.save(attempt);
-        List<Attempt> attempts = repository.findAll();
-        assertEquals(7, attempts.size());
-        int size = attempts.size() - 1 ;
-        Assertions.assertThat(attempts.get(size).getId()).isNotNull();
-        Assertions.assertThat(attempts.get(size).getCpf()).isEqualTo("11");
-        Assertions.assertThat(attempts.get(size).getName()).isEqualTo("Tentativa");
-
+        Optional<Attempt> attempts;
+        attempts = repository.findByCpf("11");
+        Assertions.assertThat(attempts.get().getId()).isNotNull();
+        Assertions.assertThat(attempts.get().getCpf()).isEqualTo("11");
+        Assertions.assertThat(attempts.get().getName()).isEqualTo("Tentativa");
     }
 
     @Test
@@ -63,9 +61,9 @@ public class AttemptRepositoryTest {
         Attempt attempt = new Attempt("Tentativa", "11");
         repository.save(attempt);
         List <Attempt> foundAttempts = repository.findAll();
-        repository.delete(foundAttempts.get(6));
+        repository.delete(foundAttempts.get(1));
         List <Attempt> attempts = repository.findAll();
-        assertEquals(6, attempts.size());
+        assertEquals(2, attempts.size());
 
     }
 
@@ -77,10 +75,9 @@ public class AttemptRepositoryTest {
         repository.save(attempt);
         attempt.setName("Tentativa Atualizada");
         repository.save(attempt);
-        List <Attempt> attempts = repository.findAll();
-        int size = attempts.size() - 1;
-        assertEquals(7, attempts.size());
-        assertEquals("Tentativa Atualizada", attempts.get(6).getName());
+        Optional<Attempt> attempts;
+        attempts = repository.findByCpf("11");
+        assertEquals("Tentativa Atualizada", attempts.get().getName());
     }
 
     @Test

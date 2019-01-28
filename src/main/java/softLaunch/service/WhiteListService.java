@@ -4,8 +4,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import softLaunch.domain.RequestWrapper;
+import softLaunch.domain.Response;
 import softLaunch.domain.WhiteList;
-import softLaunch.exceptionHandler.ClientNotFoundException;
+import softLaunch.exceptionHandler.ClientNotFoundInWhitelistException;
 import softLaunch.repository.WhiteListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,16 +27,17 @@ public class WhiteListService {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    public boolean exists(WhiteList c)  {
-         if(!repository.findByCpf(c.getCpf()).isPresent())
-             throw new ClientNotFoundException();
+    public boolean exists(String c)  {
+         if(!repository.findByCpf(c).isPresent())
+             throw new ClientNotFoundInWhitelistException();
          else return true;
     }
 
-    public WhiteList addWhiteList(WhiteList whiteList) {
-        return repository.save(whiteList);
-    }
+    public Response addWhiteList(WhiteList  whiteList) {
+        repository.save( whiteList);
+        return new Response( whiteList.getName(), whiteList.getCpf());
 
+    }
     public ResponseEntity<RequestWrapper> addBatch(RequestWrapper requestWrapper) {
         requestWrapper.getWhiteLists().stream()
                 .forEach(c-> this.addWhiteList(new WhiteList(c.getName(),c.getCpf())));

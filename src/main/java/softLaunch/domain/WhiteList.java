@@ -14,6 +14,7 @@ public class WhiteList implements Serializable {
     @NotEmpty
     @Column(name = "Nome")
     private String name;
+    @NotEmpty
     @Column(name = "CPF",unique = true)
     private String cpf;
 
