@@ -9,10 +9,6 @@ public class ClientNotFoundInWhitelistException extends RuntimeException {
         super(mensagem);
     }
 
-    public ClientNotFoundInWhitelistException(String mensagem, Throwable causa) {
-        super(mensagem, causa);
-    }
-
     public ClientNotFoundInWhitelistException() {
 
     }

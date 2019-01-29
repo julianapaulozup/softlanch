@@ -92,7 +92,7 @@ public class ClientRepositoryTest {
     public void returnEmptyWheNotFound() {
         Optional<Client> found;
         found = repository.findById(111L);
-        Assertions.assertThat(!found.isPresent());
+        Assertions.assertThat(found.isPresent()).isFalse();
     }
 
 }

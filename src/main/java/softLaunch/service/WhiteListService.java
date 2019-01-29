@@ -29,8 +29,8 @@ public class WhiteListService {
 
     public boolean exists(String c)  {
          if(!repository.findByCpf(c).isPresent())
-             throw new ClientNotFoundInWhitelistException();
-         else return true;
+             throw new ClientNotFoundInWhitelistException("Cliente não cadastrado na base");
+         return true;
     }
 
     public Response addWhiteList(WhiteList  whiteList) {
@@ -39,9 +39,8 @@ public class WhiteListService {
 
     }
     public ResponseEntity<RequestWrapper> addBatch(RequestWrapper requestWrapper) {
-        requestWrapper.getWhiteLists().stream()
-                .forEach(c-> this.addWhiteList(new WhiteList(c.getName(),c.getCpf())));
+        requestWrapper.getWhiteLists().forEach(c-> this.addWhiteList(new WhiteList(c.getName(),c.getCpf())));
 
-        return new ResponseEntity<RequestWrapper>(requestWrapper, HttpStatus.CREATED);
+        return new ResponseEntity<>(requestWrapper, HttpStatus.CREATED);
     }
 }

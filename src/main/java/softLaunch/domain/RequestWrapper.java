@@ -1,6 +1,5 @@
 package softLaunch.domain;
 
-import softLaunch.domain.WhiteList;
 
 import java.util.List;
 

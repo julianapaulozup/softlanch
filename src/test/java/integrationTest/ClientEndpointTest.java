@@ -13,13 +13,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.transaction.annotation.Transactional;
 import softLaunch.SoftLaunchMain;
 import softLaunch.domain.Response;
 import softLaunch.repository.ClientRepository;
 import softLaunch.domain.Client;
 import softLaunch.domain.RequestWrapper;
-import softLaunch.domain.WhiteList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +49,7 @@ public class ClientEndpointTest {
     }
 
     @Test
-    public void createClientShouldReturnStatusCode201() {
+    public void createClientShouldReturnStatusCode201() throws NullPointerException{
         List<Response> list = new ArrayList<>();
         list.add(new Response("teste1","oi1"));
         RequestWrapper whiteList = new RequestWrapper(list);

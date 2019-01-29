@@ -26,6 +26,9 @@ public class ClientServiceTest {
     @InjectMocks
     private ClientService clientService;
 
+    @InjectMocks
+    private WhiteListService whiteListService;
+
     @Mock
     private ClientRepository repository;
 

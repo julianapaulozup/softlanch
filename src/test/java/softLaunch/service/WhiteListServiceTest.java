@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import softLaunch.domain.Response;
+import softLaunch.exceptionHandler.ClientNotFoundInWhitelistException;
 import softLaunch.repository.WhiteListRepository;
 import softLaunch.domain.WhiteList;
 
@@ -75,6 +76,15 @@ public class WhiteListServiceTest {
 
             Page<WhiteList> found = whiteListService.getAllWhiteLists(pageRequest);
             Assertions.assertThat(found.getTotalElements()).isEqualTo(1);
+
+        }
+
+        @Test(expected = ClientNotFoundInWhitelistException.class)
+        public void whenDoesntExistinWhitelist_theThrowException(){
+            WhiteList whiteList= new WhiteList("Nome","111111");
+            given(whiteListService.exists(any())).willThrow(ClientNotFoundInWhitelistException.class);
+
+            whiteListService.exists(whiteList.getCpf());
 
         }
 

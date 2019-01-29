@@ -17,7 +17,7 @@ public class ResourseExceptionHandler {
             (ClientNotFoundInWhitelistException e, HttpServletRequest request) {
 
         ErrorDetails error = new ErrorDetails();
-        error.setStatus(404l);
+        error.setStatus(404L);
         error.setTimestamp(System.currentTimeMillis());
         error.setTitle("Cliente não cadastrado na base");
 

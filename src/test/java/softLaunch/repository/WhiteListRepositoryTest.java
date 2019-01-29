@@ -86,7 +86,7 @@ public class WhiteListRepositoryTest {
         public void returnEmptyWheNotFound(){
             Optional<WhiteList> found;
             found = repository.findById(111L);
-            Assertions.assertThat(!found.isPresent());
+            Assertions.assertThat(!found.isPresent()).isFalse();
         }
 
 }

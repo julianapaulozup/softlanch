@@ -47,21 +47,6 @@
         <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <scope>test</scope>
-    </dependency>
-    <dependency>
         <groupId>io.github.openfeign</groupId>
         <artifactId>feign-okhttp</artifactId>
         <version>9.3.1</version>
@@ -75,14 +60,6 @@
         <groupId>io.github.openfeign</groupId>
         <artifactId>feign-slf4j</artifactId>
         <version>9.3.1</version>
-    </dependency>
-    <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
     </dependency>
     <dependency>
         <groupId>org.projectlombok</groupId>

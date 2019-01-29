@@ -84,7 +84,7 @@ public class AttemptRepositoryTest {
     public void returnEmptyWheNotFound(){
         Optional<Attempt> found;
         found = repository.findById(111L);
-        Assertions.assertThat(!found.isPresent());
+        Assertions.assertThat(found.isPresent()).isFalse();
     }
 
 }

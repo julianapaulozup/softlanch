@@ -36,8 +36,7 @@ public class ClientService {
     }
 
     public ResponseEntity<RequestWrapper> addBatch(RequestWrapper requestWrapper) {
-        requestWrapper.getWhiteLists().stream()
-                .forEach(c->{
+        requestWrapper.getWhiteLists().forEach(c->{
                     try{
                         whiteListService.exists(c.getCpf());
                         this.addClient(new Client(c.getName(),c.getCpf()));

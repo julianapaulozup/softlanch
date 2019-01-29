@@ -49,7 +49,7 @@ public class WhiteListEndpointTest {
     }
 
     @Test
-    public void createWhiteListtShouldReturnStatusCode201() {
+    public void createWhiteListtShouldReturnStatusCode201() throws NullPointerException {
         List<Response> list = new ArrayList<>();
         list.add(new Response("name","cpf"));
         RequestWrapper whiteList = new RequestWrapper(list);
